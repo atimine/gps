@@ -1,0 +1,12 @@
+.none {
+  display: none !important;
+}
+
+.login-mf {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-copy {
+  cursor: pointer !important;
+}
