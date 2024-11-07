@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/get-units.css">
   <link rel="stylesheet" href="/css/get-resource.css">
+  <link rel="stylesheet" href="/css/report.css">
 
 </head>
 
@@ -59,6 +60,22 @@
 
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3">
               Resources
+            </button>
+
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal4">
+              Geofence
+            </button>
+
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal5">
+              Report
+            </button>
+
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal6">
+              Resource props
+            </button>
+
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal7">
+              Management Driver
             </button>
 
             <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1"
@@ -167,6 +184,441 @@
               </div>
             </div>
 
+            <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel4"
+              aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel4">Geofence</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+
+                    <h6>Select resources:</h6>
+                    <select id="geof-res" class="form-select mb-3" aria-label="Default select example">
+                    </select>
+                    <h6>Select geofence:</h6>
+                    <select id="zones" class="form-select mb-3" aria-label="Default select example">
+                      <option></option>
+                    </select>
+                    <div id="log"></div>
+
+                    <!-- <div class="btn-group mt-3 btns-for-acc" role="group" aria-label="Basic example">
+                      <button type="button" class="geo-param-btn btn btn-outline-secondary active">Geofence
+                        parametrs</button>
+                      <button type="button" class="cre-geo-btn btn btn-outline-secondary">Create geofence</button>
+                    </div> -->
+
+                    <div class="card mt-1">
+                      <div class="card-header">
+                        Geofence paramaters
+                      </div>
+                      <ul class="list-group list-group-flush">
+
+                        <table class="table geofence-table">
+                          <tbody>
+                            <tr>
+                              <th colspan="2">Name</th>
+                              <td>Not found</td>
+                            </tr>
+                            <tr>
+                              <th colspan="2">Id</th>
+                              <td>Not found</td>
+                            </tr>
+                            <tr>
+                              <th colspan="2">Circle radius / Line thickness</th>
+                              <td>Not found</td>
+                            </tr>
+                            <tr>
+                              <th colspan="2">Type</th>
+                              <td>Not found</td>
+                            </tr>
+                            <tr>
+                              <th colspan="2">Color</th>
+                              <td>Not found</td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+                      </ul>
+                    </div>
+
+                    <div class="card mt-1" style="display: none;">
+                      <div class="card-header">
+                        Geofence paramaters
+                      </div>
+                      <ul class="list-group list-group-flush">
+
+                        <!-- <div id="map"></div> -->
+                        <table>
+                          <tr>
+                            <td>Resource</td>
+                            <td><select id="res">
+                                <option></option>
+                              </select></td>
+                          </tr>
+                          <tr>
+                            <td>Name</td>
+                            <td><input type="text" id="n" placeholder="Name" /></td>
+                          </tr>
+                          <tr>
+                            <td>Radius</td>
+                            <td><input type="number" id="r" min="1" value="500" placeholder="Radius" /></td>
+                          </tr>
+                          <tr>
+                            <td colspan="2" style="text-align:center;">
+                              <input type="button" value="New circle" id="new_btn" />
+                              <input type="button" value="Save" id="save_btn" />
+                            </td>
+                          </tr>
+                        </table>
+                        <!-- <div id="log"></div> -->
+
+                      </ul>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel5"
+              aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel5">Report</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+
+                    <div class="card text-center">
+                      <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs">
+                          <li class="nav-item">
+                            <button id="nav-0" class="nav-link">Creating</button>
+                          </li>
+                          <li class="nav-item">
+                            <button id="nav-1" class="nav-link">Executing</button>
+                          </li>
+                          <li class="nav-item">
+                            <button id="nav-2" class="nav-link">Executing custom</button>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div class="card-body report-div active-div">
+
+                        <table class="table">
+                          <tr>
+                            <td colspan="2"><b>Create unit trips report</b></td>
+                          </tr>
+                          <tr>
+                            <td>Select resource:</td>
+                            <td><select id="res-report"></select></td>
+                          </tr>
+                          <tr>
+                            <td>Report name:</td>
+                            <td><input type="text" id="r_name" /></td>
+                          </tr>
+                          <tr>
+                            <td>Stats:</td>
+                            <td>
+
+                              <ul class="list-unstyled">
+                                <li>
+                                  <input class="rep_col" type="checkbox" id="duration" />
+                                  <label for="duration">Move time</label>
+                                </li>
+                                <li>
+                                  <input class="rep_col" type="checkbox" id="mileage" />
+                                  <label for="mileage">Mileage in trips</label>
+                                </li>
+                                <li>
+                                  <input class="rep_col" type="checkbox" id="avg_speed" />
+                                  <label for="avg_speed">Average speed in trips</label>
+                                </li>
+                                <li>
+                                  <input class="rep_col" type="checkbox" id="max_speed" />
+                                  <label for="max_speed">Max speed in trips</label>
+                                </li>
+                                <li>
+                                  <input class="rep_col" type="checkbox" id="trips_count" />
+                                  <label for="trips_count">Trips count</label>
+                                </li>
+                              </ul>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="1">
+                              <input type="button" class="btn btn-outline-primary" value="Create report"
+                                id="create_btn" />
+                            </td>
+                          </tr>
+                        </table>
+
+                        <div class="alert alert-primary alert-dismissible fade show" tabindex="-1" role="alert">
+                          <div id="report-log"></div>
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                      </div>
+
+                      <div class="card-body report-div active-div">
+                        <table class="table">
+                          <tr>
+                            <td>Select resource and template:</td>
+                            <td><select id="res-execute-report"></select><select id="templ"></select></td>
+                          </tr>
+                          <tr>
+                            <td>Select unit:</td>
+                            <td><select id="execute-report-units"></select></td>
+                          </tr>
+                          <tr>
+                            <td>Select time interval:</td>
+                            <td><select id="interval">
+                                <option value="86400" title="60 sec * 60 minutes * 24 hours = 86400 sec = 1 day">Last
+                                  day</option>
+                                <option value="604800" title="86400 sec * 7 days = 604800 sec = 1 week">Last week
+                                </option>
+                                <option value="2592000" title="86400 sec * 30 days = 2592000 sec = 1 month">Last month
+                                </option>
+                              </select></td>
+                          </tr>
+                          <tr>
+                            <td colspan="2" style="text-align:center;"><input type="button" value="Execute report"
+                                id="exec_btn" /></td>
+                          </tr>
+                          <div id="execute-report-log"></div>
+                        </table>
+                      </div>
+
+                      <div class="card-body report-div active-div">
+                        <table class="table">
+                          <tr>
+                            <td>Select resource and table:</td>
+                            <td>
+                              <select id="res-executing-custom"></select>
+                              <select id="executing-custom-templ">
+                                <option value="unit_trips">Trips</option>
+                                <option value="unit_stays">Stays</option>
+                              </select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Select unit:</td>
+                            <td>
+                              <select id="res-executing-custom-units"></select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Select time interval:</td>
+                            <td>
+                              <select id="interval">
+                                <option value="86400" title="60 sec * 60 minutes * 24 hours = 86400 sec = 1 day">Last
+                                  day</option>
+                                <option value="604800" title="86400 sec * 7 days = 604800 sec = 1 week">Last week
+                                </option>
+                                <option value="2592000" title="86400 sec * 30 days = 2592000 sec = 1 month">Last month
+                                </option>
+                              </select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Report Columns:</td>
+                            <td>
+                              <ul id="columns"></ul>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="2" style="text-align:center;"><input type="button" value="Execute report"
+                                id="exec_btn_res-executing-custom" /></td>
+                          </tr>
+                        </table>
+                        <div id="execute-custom-report-log"></div>
+                      </div>
+
+                    </div>
+
+
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- not work -->
+            <div class="modal fade" id="exampleModal6" tabindex="-1" aria-labelledby="exampleModalLabel6"
+              aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel6">Resource props</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+
+                    <div class="card text-center">
+                      <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs">
+                          <li class="nav-item">
+                            <a class="nav-link active">Export</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link">Import</a>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div class="card-body">
+
+
+                        <div id="base">
+                          <div>
+                            Resource: <select id="resource" name="resource">
+                              <option value="">-- select resource --</option>
+                            </select><br />
+                          </div>
+                          <div id="prop_types"></div>
+                          <div>
+                            Export file name: <input id="export_filename" type="text" value="export.wlp"> <input
+                              class="btn" id="btn_export_wlp" type="submit" value="Export">
+                          </div>
+                          Log:
+                          <div id="log_cont">
+                            <table>
+                              <tbody id="log"></tbody>
+                            </table>
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <div class="card-body none">
+
+
+                        <!-- <div id="base">
+                          <div>
+                            Append resource props to: <select id="resource" name="resource">
+                              <option value="">-- select resource --</option>
+                            </select><br />
+                            From file: <input class="btn" type="file" name="import_file" id="import_file"><br />
+                            <input class="btn" id="btn_import_wlp" type="submit" value="Upload & Import">
+                          </div>
+                          Data to import:
+                          <div id="prop_types"></div>
+                          Log:
+                          <div id="log_cont">
+                            <table>
+                              <tbody id="log"></tbody>
+                            </table>
+                          </div>
+                        </div> -->
+
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" id="exampleModal7" tabindex="-1" aria-labelledby="exampleModalLabel7"
+              aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel7">Management Driver</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+
+
+                    <div id="base">
+                      <form id="driver_data">
+
+                        <p>
+                          <strong>Resource:</strong>
+                          <select class="form-select" id="resource-managment-driver" name="resource">
+                            <option value="">Select resource</option>
+                          </select>
+                        </p>
+
+                        <p>
+                          <strong>Drivers:</strong>
+                          <select class="form-select" id="drivers" name="drivers">
+                            <option value="">Select driver</option>
+                          </select>
+                        </p>
+
+                        <div class="row">
+                          <div class="col">
+                            <strong>Driver name</strong>
+                            <input type="text" class="form-control" name="n" value="">
+                          </div>
+                          <div class="col">
+                            <strong>Driver id</strong>
+                            <input type="text" class="form-control" name="id" value="" disabled>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <strong>Driver description</strong>
+                            <input type="text" class="form-control" name="ds" value="">
+                          </div>
+                          <div class="col">
+                            <strong>Driver phone</strong>
+                            <input type="text" class="form-control" name="p" value="">
+                          </div>
+                        </div>
+
+                        <div class="text-start">
+                          <div class="btn-group mt-2" role="group">
+                            <input class="btn btn-success" type="button" id="create" value="Create">
+                            <input class="btn btn-primary" type="button" id="update" value="Update">
+                            <input class="btn btn-danger" type="button" id="delete" value="Delete">
+                          </div>
+                        </div>
+
+
+                      </form>
+                      Log:
+                      <div id="log_cont">
+                        <table>
+                          <tbody id="log-management-driver"></tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="modal fade" id="exampleModal7" tabindex="-1" aria-labelledby="exampleModalLabel7"
+              aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel7">Title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+
+
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+
           </div>
 
         </div>
@@ -245,8 +697,13 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-  <script src="/js/main.js"></script>
+  <!-- <script src="/js/main.js"></script> -->
   <!-- <script src="../js/example.js"></script> -->
+  <!-- <script src="../js/resource-props.js"></script> -->
+  <!-- <script src="../js/management-driver.js"></script> -->
+  <script src="../js/remaining-sms.js"></script>
+
+
 
 </body>
 
